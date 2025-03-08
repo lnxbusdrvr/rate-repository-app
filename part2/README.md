@@ -1,6 +1,6 @@
-# React Native exercises part 1
+# React Native exercises part 2
 
-Part 10 - Part 1 -exercises
+Part 10 - Part 2 -exercises
 
 ## Links
 1. [fullstackopen.com](https://fullstackopen.com/)
