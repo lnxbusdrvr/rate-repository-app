@@ -1,7 +1,8 @@
 import { View,
   StyleSheet,
   Text,
-  Pressable } from 'react-native';
+  Pressable,
+  ScrollView } from 'react-native';
 import Constants from 'expo-constants';
 import { Link } from "react-router-native";
 
@@ -10,12 +11,11 @@ const styles = StyleSheet.create({
     paddingTop: Constants.statusBarHeight,
     height: 90,
     backgroundColor: 'black',
-    flexDirection: 'row', // set children to row
     alignItems: 'center',
     paddingHorizontal: 20
   },
   text: {
-    fontSize: 10,
+    fontSize: 16,
     color: 'white',
     fontWeight: 'bold',
     marginRight: 10
@@ -25,14 +25,61 @@ const styles = StyleSheet.create({
 const AppBar = () => {
   return (
     <View style={styles.container}>
-      <Link to='/'>
-        <Text style={styles.text}>Repositories</Text>
-      </Link>
-      <Link to='/signIn'>
-        <Text style={styles.text}>
-          Sign In
-        </Text>
-      </Link>
+      <ScrollView horizontal>
+        <Link to='/'>
+          <Text style={styles.text}>Repositories</Text>
+        </Link>
+        <Link to='/signIn'>
+          <Text style={styles.text}>
+            Sign In
+          </Text>
+        </Link>
+        <Link to='/'>
+          <Text style={styles.text}>
+            asdfehgdh
+          </Text>
+        </Link>
+        <Link to='/'>
+          <Text style={styles.text}>
+            Sasdfjaosdfid
+          </Text>
+        </Link>
+        <Link to='/asdfer'>
+          <Text style={styles.text}>
+            Edfasdfjaoid
+          </Text>
+        </Link>
+        <Link to='/asdfer'>
+          <Text style={styles.text}>
+            Sasdfjaoid
+          </Text>
+        </Link>
+        <Link to='/asdfer'>
+          <Text style={styles.text}>
+            Sasdfjaoid
+          </Text>
+        </Link>
+        <Link to='/asdfer'>
+          <Text style={styles.text}>
+            Sasdfjaoid
+          </Text>
+        </Link>
+        <Link to='/asdfer'>
+          <Text style={styles.text}>
+            Sasdfjaoid
+          </Text>
+        </Link>
+        <Link to='/asdfer'>
+          <Text style={styles.text}>
+            Sasdfjaoid
+          </Text>
+        </Link>
+        <Link to='/asdfer'>
+          <Text style={styles.text}>
+            Sasdfjaoid
+          </Text>
+        </Link>
+      </ScrollView>
     </View>
   )
 };
