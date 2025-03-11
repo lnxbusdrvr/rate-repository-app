@@ -1,8 +1,8 @@
 import { StyleSheet, Text as NativeText } from 'react-native';
 
-const Text = ({ children }) => {
+const Text = ({ children, style }) => {
   return (
-    <NativeText>
+    <NativeText style={style}>
       {children}
     </NativeText>
   )
