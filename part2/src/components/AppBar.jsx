@@ -5,22 +5,25 @@ import { View,
   ScrollView } from 'react-native';
 import Constants from 'expo-constants';
 import { Link } from "react-router-native";
+import theme from '../theme';
+
 
 const styles = StyleSheet.create({
   container: {
     paddingTop: Constants.statusBarHeight,
     height: 90,
-    backgroundColor: 'black',
+    backgroundColor: theme.colors.appBarBackground,
     alignItems: 'center',
-    paddingHorizontal: 20
+    paddingHorizontal: theme.spacing.large
   },
   text: {
-    fontSize: 16,
-    color: 'white',
-    fontWeight: 'bold',
-    marginRight: 10
+    fontSize: theme.fontSizes.body,
+    color: theme.colors.textOnPrimary,
+    fontWeight: theme.fontWeights.bold,
+    marginRight: theme.spacing.medium
   }
 });
+
 
 const AppBar = () => {
   return (
@@ -32,51 +35,6 @@ const AppBar = () => {
         <Link to='/signIn'>
           <Text style={styles.text}>
             Sign In
-          </Text>
-        </Link>
-        <Link to='/'>
-          <Text style={styles.text}>
-            asdfehgdh
-          </Text>
-        </Link>
-        <Link to='/'>
-          <Text style={styles.text}>
-            Sasdfjaosdfid
-          </Text>
-        </Link>
-        <Link to='/asdfer'>
-          <Text style={styles.text}>
-            Edfasdfjaoid
-          </Text>
-        </Link>
-        <Link to='/asdfer'>
-          <Text style={styles.text}>
-            Sasdfjaoid
-          </Text>
-        </Link>
-        <Link to='/asdfer'>
-          <Text style={styles.text}>
-            Sasdfjaoid
-          </Text>
-        </Link>
-        <Link to='/asdfer'>
-          <Text style={styles.text}>
-            Sasdfjaoid
-          </Text>
-        </Link>
-        <Link to='/asdfer'>
-          <Text style={styles.text}>
-            Sasdfjaoid
-          </Text>
-        </Link>
-        <Link to='/asdfer'>
-          <Text style={styles.text}>
-            Sasdfjaoid
-          </Text>
-        </Link>
-        <Link to='/asdfer'>
-          <Text style={styles.text}>
-            Sasdfjaoid
           </Text>
         </Link>
       </ScrollView>

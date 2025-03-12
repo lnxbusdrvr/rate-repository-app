@@ -2,36 +2,39 @@ import { View, TextInput, Pressable, StyleSheet } from 'react-native';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import Text from './Text';
+import theme from '../theme'
+
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
-    backgroundColor: 'white',
+    padding: theme.spacing.large,
+    backgroundColor: theme.colors.background,
     flex: 1,
-    marginTop: 20
+    marginTop: theme.spacing.medium,
   },
   input: {
     borderWidth: 1,
     borderColor: '#ccc',
-    padding: 12,
-    marginBottom: 10,
-    borderRadius: 5,
-    fontSize: 16,
-    backgroundColor: 'white',
+    padding: theme.spacing.medium,
+    marginBottom: theme.spacing.small,
+    borderRadius: theme.borderRadius.small,
+    fontSize: theme.fontSizes.body,
+    backgroundColor: theme.colors.background,
   },
   button: {
-    backgroundColor: '#0366d6',
-    padding: 15,
-    borderRadius: 5,
+    backgroundColor: theme.colors.primary,
+    padding: theme.spacing.medium,
+    borderRadius: theme.borderRadius.small,
     alignItems: 'center',
-    marginTop: 10,
+    marginTop: theme.spacing.small,
   },
   buttonText: {
-    fontWeight: 'bold',
-    color: 'white',
-    fontSize: 16,
+    fontWeight: theme.fontWeights.bold,
+    color: theme.colors.textOnPrimary,
+    fontSize: theme.fontSizes.body,
   }
 });
+
 
 const initialValues = {
   username: '',
