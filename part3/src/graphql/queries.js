@@ -20,9 +20,26 @@ export const GET_REPOSITORIES = gql`
   }
 `;
 
-export const ME = gql`
-  query me {
-    id
-    username
+
+export const USERS = gql`
+  query {
+    users {
+      edges {
+        node {
+          id
+          username
+        }
+      }
+    }
   }
 `;
+
+export const GET_CURRENT_USER = gql`
+  query {
+    me {
+      id
+      username
+    }
+  }
+`;
+

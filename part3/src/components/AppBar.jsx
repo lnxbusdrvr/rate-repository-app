@@ -4,10 +4,14 @@ import { View,
   Text,
   Pressable,
   ScrollView } from 'react-native';
-import Constants from 'expo-constants';
 import { Link } from "react-router-native";
 import { useQuery } from '@apollo/client';
+import Constants from 'expo-constants';
+import { useApolloClient } from '@apollo/client';
+
 import theme from '../theme';
+import useAuthStorage from '../hooks/useAuthStorage';
+import { GET_CURRENT_USER } from '../graphql/queries';
 
 
 const styles = StyleSheet.create({
@@ -28,7 +32,17 @@ const styles = StyleSheet.create({
 
 
 const AppBar = () => {
+  const { data } = useQuery(GET_CURRENT_USER, {
+    fetchPolicy: 'network-only'
+  });
+  const authStorage = useAuthStorage();
+  const apolloClient = useApolloClient();
 
+  const handleSignOut = async () => {
+    await authStorage.removeAccessToken();
+    await apolloClient.resetStore();
+    navigate('/')
+  };
 
   return (
     <View style={styles.container}>
@@ -36,11 +50,17 @@ const AppBar = () => {
         <Link to='/'>
           <Text style={styles.text}>Repositories</Text>
         </Link>
+        {data?.me ? (
         <Link to='/signIn'>
           <Text style={styles.text}>
             Sign In
           </Text>
-        </Link>
+        </Link>) : (
+        <Pressable style={styles.button} onPress={handleSignOut}>
+          <Text style={styles.text}>
+            Sign Out
+          </Text>
+        </Pressable>)}
       </ScrollView>
     </View>
   )
