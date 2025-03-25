@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { View,
   StyleSheet,
   Text,
@@ -5,6 +6,7 @@ import { View,
   ScrollView } from 'react-native';
 import Constants from 'expo-constants';
 import { Link } from "react-router-native";
+import { useQuery } from '@apollo/client';
 import theme from '../theme';
 
 
@@ -26,6 +28,8 @@ const styles = StyleSheet.create({
 
 
 const AppBar = () => {
+
+
   return (
     <View style={styles.container}>
       <ScrollView horizontal>
