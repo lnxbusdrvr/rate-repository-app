@@ -50,27 +50,7 @@ const validationSchema = yup.object().shape({
   password: yup.string().required('Password is required')
 });
 
-
-const SignIn = () => {
-  const [signIn] = useSignIn();
-  const navigate = useNavigate();
-  const apolloClient = useApolloClient();
-
-  const formik = useFormik({
-    initialValues,
-    validationSchema,
-    onSubmit: async (values) => {
-      const { username, password } = values;
-      try {
-        const { data } = await signIn({ username, password });
-        await apolloClient.resetStore();
-        navigate('/');
-      } catch (e) {
-        console.error(e);
-      }
-    }
-  });
-
+export const SignInContainer = ({ formik }) => {
 
   return (
     <View style={styles.container}>
@@ -100,6 +80,30 @@ const SignIn = () => {
       </Pressable>
     </View>
   );
+};
+
+
+const SignIn = () => {
+  const [signIn] = useSignIn();
+  const navigate = useNavigate();
+  const apolloClient = useApolloClient();
+
+  const formik = useFormik({
+    initialValues,
+    validationSchema,
+    onSubmit: async (values) => {
+      const { username, password } = values;
+      try {
+        const { data } = await signIn({ username, password });
+        await apolloClient.resetStore();
+        navigate('/');
+      } catch (e) {
+        console.error(e);
+      }
+    }
+  });
+
+  return <SignInContainer formik={formik} />;
 };
 
 
