@@ -1,5 +1,6 @@
 import { Text, View, StyleSheet, Image } from 'react-native';
 
+
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
