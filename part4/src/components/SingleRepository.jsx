@@ -28,7 +28,6 @@ const SingleRepository = () => {
   if (loading)
     return <Text>loading...</Text>
 
-  console.log(`reviews: ${reviews}\n\nid: ${id}\n\nrId: ${reviews.id}`)
 
   return (
     <FlatList

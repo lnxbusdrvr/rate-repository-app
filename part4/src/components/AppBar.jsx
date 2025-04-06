@@ -46,6 +46,10 @@ const AppBar = () => {
     navigate('/')
   };
 
+  const handleCreateReview = () => {
+    navigate('/createReview');
+  };
+
   return (
     <View style={styles.container}>
       <ScrollView horizontal>
@@ -58,11 +62,18 @@ const AppBar = () => {
             Sign In
           </Text>
         </Link>) : (
-        <Pressable style={styles.button} onPress={handleSignOut}>
-          <Text style={styles.text}>
-            Sign Out
-          </Text>
-        </Pressable>)}
+        <>
+          <Pressable style={styles.button} onPress={handleCreateReview}>
+            <Text style={styles.text}>
+              Create a review
+            </Text>
+          </Pressable>
+          <Pressable style={styles.button} onPress={handleSignOut}>
+            <Text style={styles.text}>
+              Sign Out
+            </Text>
+          </Pressable>
+        </>)}
       </ScrollView>
     </View>
   )
