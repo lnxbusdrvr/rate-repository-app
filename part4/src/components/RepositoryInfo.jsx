@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   }
 });
 
-const Repository = () => {
+const RepositoryInfo = () => {
   const { id } = useParams();
   const { repository, loading } = useRepositoryById(id);
 
@@ -40,22 +40,8 @@ const Repository = () => {
       </Pressable>
     </View>
   );
-
-
 };
 
-/*
-  return (
-    <View>
-      <Pressable style={styles.button}>
-        <Text style={styles.buttonText}>
-          Open in GitHub
-        </Text>
-      </Pressable>
-    <View>
-  );
- */
 
-
-export default Repository;
+export default RepositoryInfo;
 

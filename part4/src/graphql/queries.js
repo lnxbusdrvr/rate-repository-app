@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 
-import { REPOSITORY_FIELDS } from './fragments';
+import { REPOSITORY_FIELDS, REVIEW_FIELDS } from './fragments';
 
 
 export const GET_REPOSITORIES = gql`
@@ -24,6 +24,23 @@ export const GET_REPOSITORY_BY_ID = gql`
     }
   }
   ${REPOSITORY_FIELDS}
+`;
+
+export const GET_REPOSITORY_WITH_REVIEWS = gql`
+  query($repositoryId: ID!) {
+    repository(id: $repositoryId) {
+      ...RepositoryFields
+      reviews {
+        edges {
+          node {
+            ...ReviewFields
+          }
+        }
+      }
+    }
+  }
+  ${REPOSITORY_FIELDS}
+  ${REVIEW_FIELDS}
 `;
 
 export const USERS = gql`
