@@ -43,7 +43,7 @@ const initialValues = {
   ownerName: '',
   repositoryName: '',
   rating: '',
-  review: ''
+  text: ''
 }
 
 const validationSchema = yup.object().shape({
@@ -61,9 +61,9 @@ const ReviewForm = () => {
     initialValues,
     validationSchema,
     onSubmit: async (values) => {
-      const { ownerName, repositoryName, rating, review } = values;
+      const { ownerName, repositoryName, rating, text} = values;
       try {
-        const { data } = await createReview({ ownerName, repositoryName, rating, review });
+        const { data } = await createReview({ ownerName, repositoryName, rating, text });
         navigate('/');
       } catch (e) {
         console.error(e);
@@ -111,8 +111,8 @@ const ReviewForm = () => {
         style={styles.input}
         placeholder="Review"
         placeholderTextColor="#999"
-        value={formik.values.review}
-        onChangeText={formik.handleChange('review')}
+        value={formik.values.text}
+        onChangeText={formik.handleChange('text')}
       />
 
       <Pressable style={styles.button} onPress={formik.handleSubmit} >
