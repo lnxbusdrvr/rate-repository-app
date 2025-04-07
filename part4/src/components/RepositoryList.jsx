@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { FlatList, View, StyleSheet, Pressable } from 'react-native';
+import { Menu, Button, Divider, Provider } from 'react-native-paper';
 import { useNavigate } from 'react-router-native';
-import { Picker } from '@react-native-picker/picker';
 
 import RepositoryItem from './RepositoryItem';
 import useRepositories from '../hooks/useRepositories';
@@ -37,28 +37,38 @@ export const RepositoryListContainer = ({ repositories, navigate, sortRepos, set
     : [];
 
   return (
-    <View style={{ flex: 1, paddingHorizontal: 10 }}>
-      <Picker
-        selectedValue={sortRepos}
-        onValueChange={(itemValue) => setSortRepos(itemValue)}
-        style={{ marginBottom: 10 }}
-      >
-        <Picker.Item label="Latest repositories" value="default" />
-        <Picker.Item label="Highest rated repositories" value="highRated" />
-        <Picker.Item label="Lowest rated repositories" value="lowRated" />
-      </Picker>
+    <Provider>
+      <View style={{ flex: 1, paddingHorizontal: 10 }}>
+        <Menu
+          visible={menuVisible}
+          onDismiss={closePickerMenu}
+          anchor={
+            <Button
+              onPress={openPickerMenu}
+              mode="outlined"
+              style={{ marginBottom: 10 }}
+            >
+              Sort repositories
+            </Button>
+          }
+        >
+          <Menu.Item onPress={() => handleSort('default')} title="Latest repositories" />
+          <Menu.Item onPress={() => handleSort('highRated')} title="Highest rated repositories" />
+          <Menu.Item onPress={() => handleSort('lowRated')} title="Lowest rated repositories" />
+        </Menu>
 
-      <FlatList
-        data={repositoryNodes}
-        ItemSeparatorComponent={ItemSeparator}
-        renderItem={({ item }) =>
-          <Pressable onPress={() => navigate(`/repos/${item.id}`)}>
-            <RepositoryItem item={item} />
-          </Pressable >}
-        keyExtractor={item => item.id}
-        contentContainerStyle={styles.listContainer}
-      />
-    </View>
+        <FlatList
+          data={repositoryNodes}
+          ItemSeparatorComponent={ItemSeparator}
+          renderItem={({ item }) =>
+            <Pressable onPress={() => navigate(`/repos/${item.id}`)}>
+              <RepositoryItem item={item} />
+            </Pressable >}
+          keyExtractor={item => item.id}
+          contentContainerStyle={styles.listContainer}
+        />
+      </View>
+    </Provider>
   );
 };
 
