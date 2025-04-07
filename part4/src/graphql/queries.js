@@ -4,8 +4,16 @@ import { REPOSITORY_FIELDS, REVIEW_FIELDS } from './fragments';
 
 
 export const GET_REPOSITORIES = gql`
-  query GetRepositories {
-    repositories {
+  query GetRepositories(
+    $orderBy: AllRepositoriesOrderBy
+    $orderDirection: OrderDirection
+    $first: Int
+  ) {
+    repositories(
+      orderBy: $orderBy
+      orderDirection: $orderDirection
+      first: $first
+    ) {
       edges {
         node {
           ...RepositoryFields
@@ -42,6 +50,7 @@ export const GET_REPOSITORY_WITH_REVIEWS = gql`
   ${REPOSITORY_FIELDS}
   ${REVIEW_FIELDS}
 `;
+
 
 export const USERS = gql`
   query {
