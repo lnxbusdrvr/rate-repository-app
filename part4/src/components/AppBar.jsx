@@ -57,11 +57,18 @@ const AppBar = () => {
           <Text style={styles.text}>Repositories</Text>
         </Link>
         {!data?.me ? (
-        <Link to='/signIn'>
-          <Text style={styles.text}>
-            Sign In
-          </Text>
-        </Link>) : (
+        <>
+          <Link to='/signUp'>
+            <Text style={styles.text}>
+              Sign Up
+            </Text>
+          </Link>
+          <Link to='/signIn'>
+            <Text style={styles.text}>
+              Sign In
+            </Text>
+          </Link>
+        </>) : (
         <>
           <Pressable style={styles.button} onPress={handleCreateReview}>
             <Text style={styles.text}>
