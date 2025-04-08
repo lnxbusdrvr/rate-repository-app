@@ -68,11 +68,19 @@ export const USERS = gql`
 `;
 
 export const GET_CURRENT_USER = gql`
-  query {
+  query getCurrentUsea($includeReviews: Boolean = false) {
     me {
       id
       username
+      reviews @include(if: $includeReviews) {
+        edges {
+          node {
+            ...ReviewFields
+          }
+        }
+      }
     }
   }
+  ${REVIEW_FIELDS}
 `;
 

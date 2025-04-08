@@ -5,14 +5,13 @@ import { View,
   Pressable,
   ScrollView } from 'react-native';
 import { Link } from "react-router-native";
-import { useQuery } from '@apollo/client';
 import Constants from 'expo-constants';
 import { useApolloClient } from '@apollo/client';
 import { useNavigate } from 'react-router-native';
 
 import theme from '../theme';
 import useAuthStorage from '../hooks/useAuthStorage';
-import { GET_CURRENT_USER } from '../graphql/queries';
+import useUser from '../hooks/useUser';
 
 
 const styles = StyleSheet.create({
@@ -33,9 +32,7 @@ const styles = StyleSheet.create({
 
 
 const AppBar = () => {
-  const { data } = useQuery(GET_CURRENT_USER, {
-    fetchPolicy: 'network-only'
-  });
+  const { user } = useUser();
   const navigate = useNavigate();
   const authStorage = useAuthStorage();
   const apolloClient = useApolloClient();
@@ -50,40 +47,56 @@ const AppBar = () => {
     navigate('/createReview');
   };
 
+  const SignedOutMenu = () => (
+    <>
+      <Link to='/signUp'>
+        <Text style={styles.text}>
+          Sign Up
+        </Text>
+      </Link>
+      <Link to='/signIn'>
+        <Text style={styles.text}>
+          Sign In
+        </Text>
+      </Link>
+    </>
+  );
+
+  const SignedInMenu = () => (
+    <>
+      <Link to={`/reviews/${user?.id}`}>
+        <Text style={styles.text}>
+          My reviews
+        </Text>
+      </Link>
+      <Pressable style={styles.button} onPress={handleCreateReview}>
+        <Text style={styles.text}>
+          Create a review
+        </Text>
+      </Pressable>
+      <Pressable style={styles.button} onPress={handleSignOut}>
+        <Text style={styles.text}>
+          Sign Out
+        </Text>
+      </Pressable>
+    </>
+  );
+
+
   return (
     <View style={styles.container}>
       <ScrollView horizontal>
         <Link to='/'>
           <Text style={styles.text}>Repositories</Text>
         </Link>
-        {!data?.me ? (
-        <>
-          <Link to='/signUp'>
-            <Text style={styles.text}>
-              Sign Up
-            </Text>
-          </Link>
-          <Link to='/signIn'>
-            <Text style={styles.text}>
-              Sign In
-            </Text>
-          </Link>
-        </>) : (
-        <>
-          <Pressable style={styles.button} onPress={handleCreateReview}>
-            <Text style={styles.text}>
-              Create a review
-            </Text>
-          </Pressable>
-          <Pressable style={styles.button} onPress={handleSignOut}>
-            <Text style={styles.text}>
-              Sign Out
-            </Text>
-          </Pressable>
-        </>)}
+        {!user?.id
+          ? (<SignedOutMenu />)
+          : (<SignedInMenu />)
+        }
       </ScrollView>
     </View>
   )
 };
+
 
 export default AppBar;
