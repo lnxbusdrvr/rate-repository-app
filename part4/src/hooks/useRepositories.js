@@ -1,31 +1,32 @@
 import { useQuery } from '@apollo/client';
 import { GET_REPOSITORIES } from '../graphql/queries';
 
-const useRepositories = (sortRepos = 'default') => {
+const useRepositories = (sortRepos = 'default', searchKeyword = '') => {
   const getSortedRepos = () => {
     switch(sortRepos) {
       case 'highRated':
         return {
           orderBy: 'RATING_AVERAGE',
-          orderDirection: 'DESC'
+          orderDirection: 'DESC',
         };
       case 'lowRated':
         return {
           orderBy: 'RATING_AVERAGE',
-          orderDirection: 'ASC'
+          orderDirection: 'ASC',
         };
       case 'default':
       default:
         return {
           orderBy: 'CREATED_AT',
-          orderDirection: 'DESC'
+          orderDirection: 'DESC',
         };
     };
   };
 
   const { data, loading, refetch } = useQuery(GET_REPOSITORIES, {
     variables: {
-      ...getSortedRepos()
+      ...getSortedRepos(),
+      searchKeyword 
     },
     fetchPolicy: 'cache-and-network', // Get fresh data from server
   });
