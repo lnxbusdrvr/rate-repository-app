@@ -25,8 +25,7 @@ const styles = StyleSheet.create({
 
 const ItemSeparator = () => <View style={styles.separator} />;
 
-
-export const RepositoryListContainer = ({
+const RepositoryListMenuContainer = ({
   repositories,
   navigate,
   sortRepos,
@@ -78,18 +77,30 @@ export const RepositoryListContainer = ({
           <Menu.Item onPress={() => handleSort('lowRated')} title="Lowest rated repositories" />
         </Menu>
 
-        <FlatList
-          data={repositoryNodes}
-          ItemSeparatorComponent={ItemSeparator}
-          renderItem={({ item }) =>
-            <Pressable onPress={() => navigate(`/repos/${item.id}`)}>
-              <RepositoryItem item={item} />
-            </Pressable >}
-          keyExtractor={item => item.id}
-          contentContainerStyle={styles.listContainer}
-        />
+        <RepositoryListContainer repositories={repositories} />
       </View>
     </Provider>
+  );
+};
+
+export const RepositoryListContainer = ({ repositories }) => {
+
+  // Get the nodes from the edges array
+  const repositoryNodes = repositories
+    ? repositories?.edges?.map((edge) => edge.node)
+    : [];
+
+  return (
+    <FlatList
+      data={repositoryNodes}
+      ItemSeparatorComponent={ItemSeparator}
+      renderItem={({ item }) =>
+        <Pressable onPress={() => navigate(`/repos/${item.id}`)}>
+              <RepositoryItem item={item} />
+         </Pressable >}
+      keyExtractor={item => item.id}
+      contentContainerStyle={styles.listContainer}
+    />
   );
 };
 
@@ -103,7 +114,7 @@ const RepositoryList = () => {
   const { repositories } = useRepositories(sortRepos, debouncedSearch);
 
   return (
-    <RepositoryListContainer
+    <RepositoryListMenuContainer
       repositories={repositories}
       sortRepos={sortRepos}
       setSortRepos={setSortRepos}
