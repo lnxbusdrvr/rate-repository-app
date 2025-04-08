@@ -8,6 +8,7 @@ const theme = {
     textSecondary: 'gray',
     textOnPrimary: 'white',
     error: 'red',
+    danger: 'red',
     appBarBackground: 'black'
   },
   fontSizes: {

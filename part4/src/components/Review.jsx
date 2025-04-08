@@ -1,6 +1,7 @@
-import { FlatList, StyleSheet  } from 'react-native';
+import { View, FlatList, StyleSheet  } from 'react-native';
 
 import ReviewItem from './ReviewItem';
+
 import useUser from '../hooks/useUser';
 import theme from '../theme'
 
@@ -24,7 +25,7 @@ const Review = () => {
   return (
     <FlatList
       data={reviews}
-      renderItem={({ item }) => <ReviewItem review={item}/>}
+      renderItem={({ item }) => <ReviewItem review={item} />}
       keyExtractor={item  => item.id}
       contentContainerStyle={styles.listContainer}
       ItemSeparatorComponent={ItemSeparator}
@@ -32,5 +33,7 @@ const Review = () => {
   )
 };
 
+/*
+ */
 
 export default Review;

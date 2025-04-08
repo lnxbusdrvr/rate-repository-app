@@ -77,13 +77,13 @@ const RepositoryListMenuContainer = ({
           <Menu.Item onPress={() => handleSort('lowRated')} title="Lowest rated repositories" />
         </Menu>
 
-        <RepositoryListContainer repositories={repositories} />
+        <RepositoryListContainer repositories={repositories} navigate={navigate} />
       </View>
     </Provider>
   );
 };
 
-export const RepositoryListContainer = ({ repositories }) => {
+export const RepositoryListContainer = ({ repositories, navigate }) => {
 
   // Get the nodes from the edges array
   const repositoryNodes = repositories
