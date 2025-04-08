@@ -1,4 +1,4 @@
-import { FlatList, View, TextInput, Pressable, StyleSheet  } from 'react-native';
+import { FlatList, StyleSheet  } from 'react-native';
 import { useParams } from "react-router-native";
 
 import Text from './Text';
