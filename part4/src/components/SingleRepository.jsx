@@ -23,11 +23,16 @@ const ItemSeparator = () => <View style={styles.separator} />;
 
 const SingleRepository = () => {
   const { id } = useParams();
-  const { reviews, loading } = useReviews(id);
+  const { reviews, fetchMore } = useReviews(
+    id,
+    { first: 3 }
+  );
 
-  if (loading)
-    return <Text>loading...</Text>
-
+  const onEndReach = () => {
+    console.log('has reached end');
+    fetchMore();
+    console.log('has fetched more');
+  };
 
   return (
     <FlatList
@@ -37,6 +42,8 @@ const SingleRepository = () => {
       ListHeaderComponent={() => <RepositoryInfo />}
       contentContainerStyle={styles.listContainer}
       ItemSeparatorComponent={ItemSeparator}
+      onEndReached={onEndReach}
+      onEndReachedThreshold={0.5}
     />
   )
 };

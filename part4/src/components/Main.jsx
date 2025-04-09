@@ -8,7 +8,7 @@ import AppBar from './AppBar';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
 import ReviewForm from './ReviewForm';
-import Review from './Review';
+import MyReview from './MyReview';
 
 
 const styles = StyleSheet.create({
@@ -29,7 +29,7 @@ const Main = () => {
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/repos/:id" element={<SingleRepository />} />
         <Route path="/createReview" element={<ReviewForm />} /> 
-        <Route path="/reviews/:id" element={<Review />} />
+        <Route path="/reviews/:id" element={<MyReview />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </View>

@@ -1,9 +1,8 @@
 import { View, FlatList, StyleSheet  } from 'react-native';
 
-import ReviewItem from './ReviewItem';
-
+import MyReviewItem from './MyReviewItem';
 import useUser from '../hooks/useUser';
-import theme from '../theme'
+import theme from '../theme';
 
 
 const styles = StyleSheet.create({
@@ -19,13 +18,13 @@ const styles = StyleSheet.create({
 
 const ItemSeparator = () => <View style={styles.separator} />;
 
-const Review = () => {
+const MyReview = () => {
   const { reviews } = useUser(true);
 
   return (
     <FlatList
       data={reviews}
-      renderItem={({ item }) => <ReviewItem review={item} />}
+      renderItem={({ item }) => <MyReviewItem review={item} />}
       keyExtractor={item  => item.id}
       contentContainerStyle={styles.listContainer}
       ItemSeparatorComponent={ItemSeparator}
@@ -36,4 +35,4 @@ const Review = () => {
 /*
  */
 
-export default Review;
+export default MyReview;
